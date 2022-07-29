@@ -1,7 +1,16 @@
 #!/bin/sh
 # https://github.com/apple/swift-package-manager/blob/main/Documentation/Usage.md#release
 
-rm -rf ./archives
+echo "prepare build files"
+rm -rf .archives
+rm -rf .swiftpm
+rm -rf dummy.xcodeproj
+mv Package.swift Package.swift.dist
+mv Package.swift.build Package.swift
+
+# https://www.youtube.com/watch?v=6BRrYT7bO1Q
+echo "generate xcode project - HAVE TO DO IT to use -sdk flag in xcodebuild below"
+swift package generate-xcodeproj
 
 echo "build iOS and tvOS package"
 SCHEME_NAME=dummy-Package
@@ -51,8 +60,14 @@ xcodebuild -create-xcframework -output "$ARCHIVE_DIR/$FRAMEWORK_NAME.xcframework
 
 # https://developer.apple.com/documentation/swift_packages/distributing_binary_frameworks_as_swift_packages
 echo "zip the xcframework"
-zip -r -X $ARCHIVE_DIR/$FRAMEWORK_NAME.xcframework.zip $ARCHIVE_DIR/$FRAMEWORK_NAME.xcframework
+cd $ARCHIVE_DIR
+zip -r -X $FRAMEWORK_NAME.xcframework.zip $FRAMEWORK_NAME.xcframework
+cd ..
 
 echo "genefrate checksum hash for .binaryTarget"
 checksum=$(swift package compute-checksum $ARCHIVE_DIR/$FRAMEWORK_NAME.xcframework.zip)
-sed -i "" -e "s/checksum.*/checksum: \"$checksum\"),/" Package.swift
+sed -i "" -e "s/checksum.*/checksum: \"$checksum\"),/" Package.swift.dist
+
+echo "clean up"
+mv Package.swift Package.swift.build
+mv Package.swift.dist Package.swift

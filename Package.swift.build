@@ -21,10 +21,9 @@ let package = Package(
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .binaryTarget(
+        .target(
             name: "dummy",
-            url: "https://github.com/wtao-nexus5/swift-package/releases/download/1.0/dummy.xcframework.zip",
-            checksum: "The checksum of the ZIP archive that contains the XCFramework."),
+            dependencies: []),
         .testTarget(
             name: "dummyTests",
             dependencies: ["dummy"]),

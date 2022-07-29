@@ -12,7 +12,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "dummy",
-            targets: ["dummy"]),
+            targets: ["dummy, dummyDist"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -25,7 +25,7 @@ let package = Package(
             name: "dummy",
             dependencies: []),
         .binaryTarget(
-            name: "dummy",
+            name: "dummyDist",
             url: "https://github.com/redfast/redfast-sdk/releases/download/1.0.11/dummy.xcframework.zip",
             checksum: "16c27e88858d10b7a50d29a2cf9011296ef0c4e312adc2aeab5dc489faf8db31"),
         .testTarget(

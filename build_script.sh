@@ -54,6 +54,5 @@ echo "zip the xcframework"
 zip -r -X $ARCHIVE_DIR/$FRAMEWORK_NAME.xcframework.zip $ARCHIVE_DIR/$FRAMEWORK_NAME.xcframework
 
 echo "genefrate checksum hash for .binaryTarget"
-cp Package.swift $ARCHIVE_DIR/Package.swift
 checksum=$(swift package compute-checksum $ARCHIVE_DIR/$FRAMEWORK_NAME.xcframework.zip)
-sed -i "" -e "s/CHECKSUM-VALUE/$checksum/" $ARCHIVE_DIR/Package.swift
+sed -i "" -e "s/checksum.*/checksum: \"$checksum\"),/" Package.swift

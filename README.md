@@ -6,4 +6,5 @@
 
 ## Test release to github
 
-## for real binary distribution, this repo shall contain no source code
+## Binary distribution
+For real binary distribution, this repo shall contain no source code

@@ -25,7 +25,7 @@ let package = Package(
             name: "dummy",
             dependencies: []),
         .binaryTarget(
-            name: "SomeRemoteBinaryPackage",
+            name: "dummy",
             url: "https://github.com/redfast/redfast-sdk/releases/download/1.0.11/dummy.xcframework.zip",
             checksum: "16c27e88858d10b7a50d29a2cf9011296ef0c4e312adc2aeab5dc489faf8db31"),
         .testTarget(

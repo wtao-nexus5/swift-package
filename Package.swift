@@ -24,7 +24,7 @@ let package = Package(
         .binaryTarget(
             name: "dummy",
             url: "https://github.com/wtao-nexus5/swift-package/releases/download/1.0/dummy.xcframework.zip",
-            checksum: "The checksum of the ZIP archive that contains the XCFramework."),
+            checksum: "9212aa14e56477ff43cf3218332dd3b4846beff2e767bca403920c8a7ffbcedb"),
         .testTarget(
             name: "dummyTests",
             dependencies: ["dummy"]),

@@ -12,7 +12,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "dummy",
-            targets: ["dummy", "dummyDist"]),
+            targets: ["dummy"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -21,15 +21,9 @@ let package = Package(
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .target(
-            name: "dummy",
-            dependencies: []),
         .binaryTarget(
-            name: "dummyDist",
+            name: "dummy",
             url: "https://github.com/wtao-nexus5/swift-package/releases/download/1.0/dummy.xcframework.zip",
             checksum: "16c27e88858d10b7a50d29a2cf9011296ef0c4e312adc2aeab5dc489faf8db31"),
-        .testTarget(
-            name: "dummyTests",
-            dependencies: ["dummy"]),
     ]
 )
